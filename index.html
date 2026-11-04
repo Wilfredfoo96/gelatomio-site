@@ -1,0 +1,1284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gelatomio · Traditional Italian ice cream</title>
+<meta name="description" content="Gelatomio: traditional Italian gelato, made fresh every day. Shop online in Singapore and Malaysia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Lobster&family=Lobster+Two:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* Colour system: 60 neutral (cream/white + ink) · 30 bear blue · 10 lime. Food colours live only in the food. */
+:root{
+  --bg:#FFFDF8; --bg-2:#FAF7F1; --paper:#FFFFFF; --ink:#111318; --ink-2:#3F4550; --muted:#6B7280; --line:#E8E3DA;
+  --blue:#1877F2; --blue-deep:#0A3F8F; --blue-soft:#E8F1FE; --lime:#C3E24C; --it-red:#D81830; --it-green:#009A2E;
+  --sans:"Outfit", system-ui, sans-serif; --script:"Lobster Two","Lobster",cursive;
+  --ease:cubic-bezier(.22,1,.36,1); --mq:84px;
+  /* spacing scale */
+  --sec:128px; --head:56px; --cols:clamp(32px,5vw,80px); --gap:20px; --gap-s:12px; --pad:28px;
+  --r-lg:32px; --r-md:24px; --r-sm:16px;
+  /* type scale: Outfit for everything; Lobster Two only for headline accents, the hero word and the footer wordmark */
+  --t-h1:clamp(40px,4.6vw,72px); --t-h2:clamp(44px,5.4vw,84px); --t-h3:clamp(28px,2.6vw,40px); --t-h4:clamp(20px,1.6vw,24px); --t-lead:clamp(22px,2.2vw,32px); --gut:max(20px,5vw,calc((100vw - 1500px) / 2));
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.035em;line-height:1}
+h1 em,h2 em,h3 em{font-family:var(--script);font-style:italic;font-weight:700;letter-spacing:-.01em;color:var(--blue)}
+.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:99px;background:var(--blue);color:#fff;font-weight:600;font-size:15px;transition:transform .4s var(--ease),background .3s,box-shadow .3s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.dark{background:var(--ink)}
+.btn svg{width:18px;height:18px}
+main{position:relative;z-index:2;background:var(--bg)}
+.flag{display:flex;height:4px;width:64px;border-radius:4px;overflow:hidden}
+.flag i{flex:1}.flag i:nth-child(1){background:var(--it-green)}.flag i:nth-child(2){background:#fff;box-shadow:inset 0 0 0 1px var(--line)}.flag i:nth-child(3){background:var(--it-red)}
+.reveal{opacity:0;transform:translateY(28px);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:none}
+.sec-h{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:var(--head)}
+.sec-h h2{margin-top:14px;font-size:var(--t-h2);line-height:.95;letter-spacing:-.045em}
+.sec-h .side{max-width:380px;color:var(--ink-2)}
+.price{display:inline-block;font-weight:700;font-variant-numeric:tabular-nums;overflow:hidden;vertical-align:bottom}
+.price span{display:inline-block}
+
+/* ---------- header ---------- */
+header.site{position:fixed;z-index:50;top:18px;left:0;right:0;padding:0 max(12px,2vw);transition:top .5s var(--ease),transform .6s var(--ease)}
+header.site.scrolled{top:12px}
+header.site.hide{transform:translateY(-140%)}
+.bar{max-width:1540px;margin:0 auto;height:68px;border-radius:99px;background:rgba(255,255,255,.72);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);box-shadow:0 0 0 1px rgba(17,19,24,.06),0 10px 30px -18px rgba(17,19,24,.35);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 10px 0 26px;transition:background .4s}
+header.site.scrolled .bar{background:rgba(255,255,255,.9)}
+.nav{display:flex;gap:4px;font-size:14.5px;font-weight:500}
+.nav a{position:relative;padding:9px 14px;border-radius:99px;transition:background .3s}
+.nav a:hover{background:rgba(17,19,24,.05)}
+.nav a.on{color:var(--blue)}
+.logo{justify-self:center;display:block;height:68px;overflow:visible}
+.logo img{height:84px;width:auto;margin-top:-4px;transition:height .5s var(--ease),margin .5s var(--ease)}
+header.site.scrolled .logo img{height:64px;margin-top:2px}
+.bar-r{justify-self:end;display:flex;align-items:center;gap:6px}
+.ctry{position:relative;display:inline-flex;background:rgba(17,19,24,.06);border-radius:99px;padding:4px;font-size:13px;font-weight:700;margin-left:6px}
+.ctry button{position:relative;z-index:1;height:34px;padding:0 13px;border-radius:99px;transition:color .3s}
+.ctry button[aria-pressed="true"]{color:#fff}
+.ctry .pill{position:absolute;top:4px;bottom:4px;left:4px;border-radius:99px;background:var(--blue);transition:transform .5s var(--ease),width .5s var(--ease)}
+.cart{position:relative;width:48px;height:48px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;margin-left:4px}
+.cart svg{width:20px;height:20px}
+.cart .count{position:absolute;top:-3px;right:-3px;min-width:20px;height:20px;border-radius:99px;background:var(--lime);color:var(--ink);font-size:11px;font-weight:700;display:grid;place-items:center;padding:0 5px}
+.cart.bump{animation:bump .5s var(--ease)}
+@keyframes bump{30%{transform:scale(1.18)}60%{transform:scale(.94)}}
+.menu-btn{display:none;width:44px;height:44px;border-radius:50%;place-items:center}
+.menu-btn i{display:block;width:20px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:.4s var(--ease)}
+.menu-btn i::before,.menu-btn i::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--ink);border-radius:2px;transition:.4s var(--ease)}
+.menu-btn i::before{top:-6px}.menu-btn i::after{top:6px}
+.menu-open .menu-btn i{background:transparent}
+.menu-open .menu-btn i::before{top:0;transform:rotate(45deg)}.menu-open .menu-btn i::after{top:0;transform:rotate(-45deg)}
+.menu{position:fixed;inset:0;z-index:45;background:var(--bg);padding:130px var(--gut) 40px;display:flex;flex-direction:column;gap:6px;clip-path:circle(0 at 40px 70px);transition:clip-path .7s var(--ease);visibility:hidden}
+.menu-open .menu{clip-path:circle(150% at 40px 70px);visibility:visible}
+.menu a{font-size:42px;font-weight:700;letter-spacing:-.03em;opacity:0;transform:translateY(20px);transition:.6s var(--ease)}
+.menu-open .menu a{opacity:1;transform:none}
+.menu a:nth-child(2){transition-delay:.05s}.menu a:nth-child(3){transition-delay:.1s}.menu a:nth-child(4){transition-delay:.15s}.menu a:nth-child(5){transition-delay:.2s}
+.menu .foot{margin-top:auto;color:var(--muted);font-size:14px}
+
+/* ---------- hero slider ---------- */
+.hero{position:relative;height:calc(100vh - var(--mq));height:calc(100svh - var(--mq));min-height:580px;overflow:hidden;background:var(--bg);touch-action:pan-y;--sx:67%;--cw:min(36vw,480px,calc((max(100svh - var(--mq),580px) - 190px) * .8))}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(38% 50% at var(--sx) 55%,#fff,transparent 72%);pointer-events:none}
+.hero-word{position:absolute;left:var(--sx);top:50%;transform:translate(-50%,-46%);text-align:center;font-family:var(--script);font-style:italic;font-weight:700;line-height:.9;letter-spacing:-.02em;color:var(--ink);opacity:.055;white-space:nowrap;pointer-events:none;overflow:hidden;padding:.1em .1em}
+.hero-word span{display:inline-block;will-change:transform}
+.hero-canvas{position:absolute;left:var(--sx);top:50%;width:var(--cw);aspect-ratio:.8;transform:translate(-50%,-52%)}
+.hero-canvas canvas{width:100%;height:100%}
+.hero-shadow{position:absolute;left:var(--sx);top:calc(50% + var(--cw) * .53);width:min(10vw,130px);height:16px;transform:translate(-50%,0);border-radius:50%;background:radial-gradient(closest-side,rgba(17,19,24,.18),transparent);filter:blur(2px)}
+.no-gl .hero-canvas{display:grid;place-items:center}
+.no-gl .hero-canvas::before{content:"";width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8,transparent 40%),var(--scoop,#B8CC86)}
+.ingr{position:absolute;inset:0;pointer-events:none}
+.ingr .grp{position:absolute;inset:0}
+.ingr .it{position:absolute;left:var(--x);top:var(--y);width:var(--s);transform:translate(-50%,-50%) rotate(var(--r));transition:transform .9s var(--ease),opacity .6s}
+.ingr .it svg{width:100%;height:auto;animation:float 7s ease-in-out infinite;animation-delay:var(--d)}
+.ingr .grp:not(.on) .it{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(.3)}
+@keyframes float{50%{transform:translateY(-12px) rotate(6deg)}}
+.hero-copy{position:absolute;left:var(--gut);top:50%;transform:translateY(-54%);width:min(460px,38vw);z-index:2}
+.hero-copy h1{margin-top:14px;font-size:var(--t-h1);line-height:1;letter-spacing:-.04em}
+.hero-sub{margin:18px 0 0;color:var(--ink-2);font-size:17px;max-width:420px}
+.hfl{margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
+.hfl .idx{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.hfl .idx i{display:block;width:24px;height:1.5px;background:currentColor}
+.hfl h2{margin:10px 0 8px;font-size:var(--t-h3);letter-spacing:-.035em}
+.hfl p{margin:0 0 24px;color:var(--ink-2);font-size:16px;max-width:380px}
+.hfl .row{display:flex;align-items:center;gap:18px}
+.hfl .price{font-size:22px}
+.hfl .unit{color:var(--muted);font-size:13px}
+.swap-out{animation:swapOut .35s var(--ease) forwards}
+.swap-in{animation:swapIn .6s var(--ease) both}
+@keyframes swapOut{to{opacity:0;transform:translateY(-12px);filter:blur(6px)}}
+@keyframes swapIn{from{opacity:0;transform:translateY(14px);filter:blur(6px)}}
+.tabs{position:absolute;left:var(--sx);bottom:44px;transform:translateX(-50%);display:flex;gap:4px;padding:5px;border-radius:99px;background:#fff;box-shadow:0 0 0 1px rgba(17,19,24,.07),0 10px 30px -20px rgba(17,19,24,.35);z-index:3}
+.tab{position:relative;display:flex;align-items:center;gap:8px;height:40px;padding:0 16px 0 8px;border-radius:99px;font-size:13.5px;font-weight:600;color:var(--ink-2);overflow:hidden;white-space:nowrap;transition:background .4s,color .4s}
+.tab i{flex:none;width:24px;height:24px;border-radius:50%;background:var(--c);box-shadow:inset -3px -4px 0 rgba(0,0,0,.08)}
+.tab.on{background:var(--ink);color:#fff}
+.tab .bar-p{position:absolute;left:14px;right:14px;bottom:5px;height:2px;border-radius:2px;background:rgba(255,255,255,.2);opacity:0}
+.tab.on .bar-p{opacity:1}
+.tab .bar-p::after{content:"";position:absolute;inset:0;background:var(--lime);transform-origin:left;transform:scaleX(0)}
+.tab.on.run .bar-p::after{animation:fillbar var(--dur,6.5s) linear forwards}
+.tabs.paused .tab.on.run .bar-p::after{animation-play-state:paused}
+@keyframes fillbar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ---------- marquee ---------- */
+.marq{position:relative;height:var(--mq);display:flex;align-items:center;background:var(--ink);color:#fff;overflow:hidden}
+.marq .track{display:flex;width:max-content;will-change:transform}
+.marq .seq{display:flex;align-items:center;gap:34px;padding-right:34px;font-weight:700;letter-spacing:-.03em;font-size:30px;line-height:1;white-space:nowrap}
+.marq .seq svg{width:26px;height:26px;flex:none;color:var(--lime)}
+.drip-edge{position:absolute;left:0;right:0;height:26px;bottom:-25px;z-index:3;pointer-events:none}
+
+/* ---------- not in it ---------- */
+.notin{padding-top:var(--sec);padding-bottom:var(--sec)}
+.notin .eyebrow{margin-bottom:14px}
+.notin .ln{position:relative;display:block;width:max-content;max-width:100%;font-size:clamp(46px,8.2vw,132px);line-height:1.02;letter-spacing:-.05em;font-weight:700;transition:color .5s}
+.notin .ln::after{content:"";position:absolute;left:-1%;top:54%;height:.07em;width:102%;background:var(--blue);border-radius:99px;transform:scaleX(var(--k,0));transform-origin:left}
+.notin .ln.struck{color:#CBCFD6}
+.notin .last{margin-top:var(--head);display:grid;grid-template-columns:1fr minmax(260px,440px);align-items:center;gap:var(--cols)}
+.notin .last p{margin:0;font-size:var(--t-lead);line-height:1.2;letter-spacing:-.025em;font-weight:500;max-width:720px}
+.notin .last p b{color:var(--blue)}
+.halal{display:flex;align-items:center;gap:14px;border:1.5px solid var(--ink);border-radius:var(--r-sm);padding:12px 18px 12px 12px;font-size:14px;line-height:1.35;margin-top:26px;width:max-content;max-width:100%}
+.halal img{width:44px;height:44px;border-radius:50%}
+.notin .ph{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(17,19,24,.45)}
+.notin .ph img{width:100%;height:118%;object-fit:cover;will-change:transform}
+
+/* ---------- shop ---------- */
+.shop{padding-top:var(--sec);padding-bottom:var(--sec);background:var(--bg-2)}
+.deliv{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;font-weight:600;color:var(--ink)}
+.deliv svg{width:18px;height:18px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{height:40px;padding:0 18px;border-radius:99px;box-shadow:inset 0 0 0 1.5px var(--line);background:#fff;font-size:14px;font-weight:600;transition:.3s var(--ease)}
+.filters button:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.case{position:relative;border-radius:var(--r-lg);background:#fff;box-shadow:inset 0 0 0 1px var(--line);padding:var(--pad);overflow:hidden}
+.case::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.7) 45%,transparent 55%);transform:translateX(-100%);pointer-events:none;z-index:3}
+.case.in::before{animation:sheen 1.8s .2s var(--ease)}
+@keyframes sheen{to{transform:translateX(100%)}}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.tub{position:relative;background:var(--bg-2);border-radius:var(--r-md);padding:12px 12px 16px;display:flex;flex-direction:column;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.tub:hover{transform:translateY(-6px);box-shadow:0 24px 40px -20px rgba(17,19,24,.25)}
+.tub .tray{position:relative;border-radius:var(--r-sm);background:linear-gradient(180deg,#EEF0F2,#D5D9DE);padding:14px 10px 0;overflow:hidden;height:150px;display:flex;align-items:flex-end}
+.tub .tray::after{content:"";position:absolute;left:0;right:0;bottom:0;height:16px;background:linear-gradient(180deg,#D8DBDF,#B6BBC1)}
+.tub .mound{position:relative;z-index:1;width:100%;transition:transform .7s var(--ease)}
+.tub:hover .mound{transform:translateY(-6px) scale(1.03)}
+.tub .spoon{position:absolute;z-index:2;right:14px;top:10px;width:46px;transform:rotate(28deg);transition:transform .7s var(--ease)}
+.tub:hover .spoon{transform:rotate(8deg) translate(-6px,-4px)}
+.tub .tags{position:absolute;z-index:2;left:20px;top:20px;display:flex;gap:6px}
+.tag{font-size:11px;font-weight:700;padding:4px 9px;border-radius:99px;background:#fff;color:var(--ink)}
+.tag.my{background:var(--ink);color:#fff}
+.tub h3{margin:14px 4px 4px;font-size:var(--t-h4);letter-spacing:-.02em;line-height:1.15}
+.tub .it-note{margin:0 4px;color:var(--muted);font-size:13.5px;line-height:1.4}
+.tub .buy{margin-top:auto;padding:14px 4px 0;display:flex;align-items:center;justify-content:space-between}
+.tub .buy .price{font-size:17px}
+.tub .buy .sz{font-size:12px;color:var(--muted);font-weight:500;margin-left:6px}
+.add{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+.add:hover{transform:rotate(90deg) scale(1.06);background:var(--blue)}
+.add svg{width:18px;height:18px}
+.add[disabled]{background:#D6D3CD;cursor:not-allowed;transform:none}
+.tub.na .mound{filter:grayscale(.7) opacity(.6)}
+.tub.hide{display:none}
+
+/* ---------- story (spotlight) ---------- */
+.story{padding-top:var(--sec);padding-bottom:var(--sec)}
+.st-head{display:grid;grid-template-columns:1.7fr 1fr;gap:var(--cols);align-items:end}
+.st-head h2{margin-top:14px;font-size:var(--t-h2);line-height:.95;letter-spacing:-.045em}
+.st-head p{color:var(--ink-2);max-width:440px;margin:0;font-size:17px}
+.pn-row{display:flex;gap:14px;height:clamp(460px,58vh,600px);margin-top:var(--head)}
+.pn{position:relative;flex:1;min-width:0;border-radius:var(--r-lg);overflow:hidden;background:#222;transition:flex 1s var(--ease);text-align:left;color:#fff;isolation:isolate}
+.pn.on{flex:3.4}
+.pn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s var(--ease),filter .8s}
+.pn:not(.on) img{filter:saturate(.6) brightness(.8)}
+.pn:hover img{transform:scale(1.04)}
+.pn::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,19,24,.1) 20%,rgba(17,19,24,.78));z-index:-1}
+.pn .pn-top{position:absolute;left:24px;right:24px;top:22px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.pn .pn-top span:last-child{opacity:.7}
+.pn .pn-prog{position:absolute;left:24px;right:24px;top:52px;height:2px;border-radius:2px;background:rgba(255,255,255,.25);overflow:hidden;opacity:0}
+.pn.on .pn-prog{opacity:1}
+.pn .pn-prog::after{content:"";position:absolute;inset:0;background:var(--lime);transform-origin:left;transform:scaleX(0)}
+.pn.on.run .pn-prog::after{animation:fillbar var(--sdur,5s) linear forwards}
+.pn .pn-vt{position:absolute;left:50%;bottom:28px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:clamp(34px,3.2vw,48px);font-weight:700;letter-spacing:-.04em;transition:opacity .4s}
+.pn.on .pn-vt{opacity:0}
+.pn .pn-txt{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--pad);max-width:520px;opacity:0;transform:translateY(16px);transition:opacity .5s .25s,transform .7s .25s var(--ease)}
+.pn:not(.on) .pn-txt{transition-delay:0s;transition-duration:.2s}
+.pn.on .pn-txt{opacity:1;transform:none}
+.pn .pn-txt b{display:block;font-size:clamp(56px,5.4vw,88px);line-height:.85;letter-spacing:-.055em;font-variant-numeric:tabular-nums}
+.pn .pn-txt .h{display:block;margin-top:14px;font-size:var(--t-h3);font-weight:700;letter-spacing:-.035em;line-height:1}
+.pn .pn-txt .d{display:block;margin-top:10px;color:#E4E7EC;font-size:16px;max-width:420px}
+
+/* ---------- cakes ---------- */
+.cakes{padding-top:var(--sec);padding-bottom:var(--sec);background:var(--bg-2)}
+.cake-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:var(--cols);align-items:center}
+.stack{position:relative;aspect-ratio:1.15/1;width:100%;max-width:620px;cursor:pointer}
+.ccard{position:absolute;inset:4% 8% 6% 2%;border-radius:var(--r-lg);background:#fff;box-shadow:inset 0 0 0 1px var(--line),0 30px 60px -34px rgba(17,19,24,.3);display:flex;flex-direction:column;justify-content:space-between;padding:var(--pad);transition:transform .9s var(--ease),filter .9s var(--ease),opacity .9s;transform-origin:50% 100%}
+.ccard[data-pos="0"]{z-index:4;transform:none}
+.ccard[data-pos="1"]{z-index:3;transform:translate(4%,-4%) scale(.95) rotate(2.5deg)}
+.ccard[data-pos="2"]{z-index:2;transform:translate(8%,-8%) scale(.9) rotate(5deg);opacity:.9}
+.ccard[data-pos="3"]{z-index:1;transform:translate(12%,-12%) scale(.85) rotate(7.5deg);opacity:.75}
+.ccard .occ{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.ccard svg{width:70%;margin:0 auto;height:auto}
+.ccard .nm{font-size:var(--t-h3);font-weight:700;letter-spacing:-.035em;line-height:1}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-s);margin-top:var(--gap);max-width:620px}
+.thumb{position:relative;text-align:left;background:#fff;border-radius:var(--r-md);padding:10px 10px 12px;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .3s,transform .4s var(--ease)}
+.thumb:hover{transform:translateY(-3px)}
+.thumb.on{box-shadow:inset 0 0 0 2px var(--blue)}
+.thumb .mini{background:var(--bg-2);border-radius:var(--r-sm);aspect-ratio:1.3/1;display:grid;place-items:center;overflow:hidden}
+.thumb .mini svg{width:88%}
+.thumb b{display:block;font-size:13.5px;line-height:1.2;margin-top:9px}
+.thumb .price{font-size:12.5px;color:var(--muted);font-weight:600}
+.cake-copy{padding-top:0}
+.cake-copy h2{margin:14px 0 20px;font-size:var(--t-h2);line-height:.95;letter-spacing:-.045em}
+.cake-copy > p{color:var(--ink-2);max-width:460px;margin:0 0 26px}
+.cake-now{border-top:1.5px solid var(--ink);padding-top:18px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.cake-now .nm{font-size:var(--t-h4);font-weight:700;letter-spacing:-.02em}
+.cake-now .from{font-size:13px;color:var(--muted)}
+.cake-now .price{font-size:24px}
+.sizes{display:flex;gap:8px;margin-bottom:18px}
+.sizes button{height:40px;padding:0 16px;border-radius:99px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--line);font-size:14px;font-weight:600}
+.sizes button[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.dates{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:10px}
+.dates button{text-align:center;padding:10px 0;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);font-weight:700;font-size:15px}
+.dates button small{display:block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dates button[disabled]{background:transparent;color:#C9C3B8;text-decoration:line-through;cursor:not-allowed}
+.dates button.on{background:var(--blue);color:#fff;box-shadow:none}
+.dates button.on small{color:#D6E6FF}
+.dates-note{font-size:13px;color:var(--muted);margin:0 0 24px}
+
+/* ---------- two cities ---------- */
+.cities{padding-top:var(--sec);padding-bottom:var(--sec)}
+.city-grid{display:grid;grid-template-columns:1fr minmax(300px,380px) 1fr;gap:var(--gap);align-items:stretch}
+.pc{position:relative;border-radius:var(--r-lg);background:#fff;box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;display:flex;flex-direction:column;transform-style:preserve-3d;transition:box-shadow .4s,transform .5s var(--ease)}
+.pc.on{box-shadow:inset 0 0 0 2px var(--blue),0 30px 60px -36px rgba(24,119,242,.55)}
+.pc .sky{position:relative;padding-top:62px;background:linear-gradient(180deg,var(--blue-soft),#fff);overflow:hidden}
+.pc .sky svg{position:relative;width:100%;height:auto}
+.pc .sky .ln{fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease)}
+.pc .sky .fl{fill:#fff;opacity:0;transition:opacity 1s 1.2s}
+.cities.in .pc .sky .ln{stroke-dashoffset:0}
+.cities.in .pc .sky .fl{opacity:1}
+.pc .sky .sun{fill:var(--lime);opacity:.9}
+.pc .badge{position:absolute;top:18px;left:18px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:#fff;border-radius:99px;padding:7px 12px;box-shadow:0 0 0 1px rgba(17,19,24,.06)}
+.pc .yours{position:absolute;top:18px;right:18px;font-size:12px;font-weight:700;background:var(--blue);color:#fff;border-radius:99px;padding:7px 12px;opacity:0;transform:translateY(-6px);transition:.4s var(--ease)}
+.pc.on .yours{opacity:1;transform:none}
+.pc .body{padding:var(--pad);display:flex;flex-direction:column;gap:16px;flex:1}
+.pc h3{font-size:var(--t-h3);letter-spacing:-.035em}
+.pc ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.pc li{display:flex;gap:10px;align-items:flex-start}
+.pc li svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--blue)}
+.pc .from{display:flex;justify-content:space-between;align-items:flex-end;margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+.pc .from small{display:block;font-size:12px;color:var(--muted)}
+.pc .from .price{font-size:26px}
+.mid{display:flex;flex-direction:column;gap:var(--gap)}
+.route-card{position:relative;flex:1;border-radius:var(--r-lg);background:var(--ink);color:#fff;padding:var(--pad);overflow:hidden;min-height:330px;display:flex;flex-direction:column}
+.route-card h3{font-size:var(--t-h3);letter-spacing:-.035em;line-height:1.05}
+.route-card h3 em{color:var(--lime)}
+.route-card p{margin:10px 0 0;color:#B8BEC9;font-size:14.5px;max-width:260px}
+.route-card svg{margin-top:auto;align-self:flex-end;width:min(62%,220px);height:auto;padding-top:16px}
+.route{stroke-dasharray:4 8}
+.traveller{offset-path:path("M40 30 C 150 30, 60 150, 170 170");animation:travel 4.5s var(--ease) infinite}
+@keyframes travel{0%{offset-distance:0%;opacity:0}10%,85%{opacity:1}100%{offset-distance:100%;opacity:0}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{from{transform:scale(.4);opacity:.7}to{transform:scale(2.6);opacity:0}}
+.check{border-radius:var(--r-lg);background:#fff;box-shadow:inset 0 0 0 1px var(--line);padding:var(--pad)}
+.check b{display:block;font-size:var(--t-h4);letter-spacing:-.02em}
+.check p{margin:4px 0 14px;color:var(--muted);font-size:14px}
+.check form{display:flex;gap:8px}
+.check input{flex:1;min-width:0;height:48px;border-radius:99px;border:0;box-shadow:inset 0 0 0 1.5px var(--line);padding:0 18px;font:inherit;font-size:15px;background:var(--bg)}
+.check input:focus{outline:none;box-shadow:inset 0 0 0 2px var(--blue)}
+.check .res{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14.5px;min-height:44px}
+.check .res i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:13px}
+.check .res.ok i{background:var(--lime);color:var(--ink)}
+.check .res.no i{background:#F3E4E4;color:var(--it-red)}
+.check .res:not(.ok):not(.no){visibility:hidden}
+
+/* ---------- business ---------- */
+.biz{--gut:max(20px,min(5vw,60px));position:relative;background:var(--blue-deep);color:#fff;border-radius:40px;width:calc(100% - 2 * max(12px,2vw));max-width:1620px;margin:0 auto;padding:var(--sec) 0;overflow:hidden;isolation:isolate}
+.biz .glow{position:absolute;border-radius:50%;filter:blur(80px);z-index:-1;animation:drift 18s ease-in-out infinite alternate}
+.biz .g1{width:520px;height:520px;background:#2E86FF;opacity:.35;left:-160px;top:-160px}
+.biz .g2{width:460px;height:460px;background:#062A63;opacity:.8;right:-120px;bottom:-120px;animation-delay:-8s}
+@keyframes drift{to{transform:translate(70px,50px) scale(1.12)}}
+.biz .eyebrow{color:#A9C4EE}
+.biz-top{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--cols);align-items:center}
+.biz h2{margin-top:14px;font-size:var(--t-h2);line-height:.95;letter-spacing:-.045em}
+.biz h2 em{color:var(--lime)}
+.biz-intro{color:#CFDCF3;max-width:460px;margin:22px 0 30px;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap-s);max-width:520px}
+.stat{border-radius:var(--r-md);background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);padding:20px}
+.stat b{display:block;font-size:var(--t-h3);letter-spacing:-.035em;line-height:1}
+.stat span{display:block;margin-top:6px;font-size:13.5px;color:#BFD0EE}
+.builder{background:#fff;color:var(--ink);border-radius:var(--r-lg);padding:var(--pad);box-shadow:0 40px 80px -40px rgba(0,0,0,.55)}
+.builder h3{font-size:var(--t-h4);letter-spacing:-.02em}
+.builder .sub{margin:6px 0 20px;color:var(--muted);font-size:14px}
+.q{margin-bottom:18px}
+.q label,.q .ql{display:flex;justify-content:space-between;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{height:38px;padding:0 15px;border-radius:99px;background:var(--bg-2);box-shadow:inset 0 0 0 1.5px var(--line);font-size:14px;font-weight:600;transition:.25s var(--ease);display:inline-flex;align-items:center;gap:6px}
+.chip:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.chip[aria-pressed="true"]::before{content:"✓";font-size:12px}
+.chips.single .chip[aria-pressed="true"]::before{content:none}
+.range{display:flex;align-items:center;gap:14px}
+.range input{flex:1;accent-color:var(--blue)}
+.scoops{display:flex;gap:5px;margin-top:10px}
+.scoops i{width:14px;height:14px;border-radius:50%;background:var(--line);transition:background .3s,transform .3s var(--ease)}
+.scoops i.on{background:var(--c);transform:scale(1.1)}
+.summary{margin-top:6px;border-radius:var(--r-md);background:var(--blue-soft);padding:16px 18px;font-size:15px;line-height:1.45}
+.summary b{color:var(--blue-deep)}
+.builder .btn{width:100%;justify-content:center;margin-top:14px}
+.certs{display:flex;gap:var(--gap-s);align-items:center;flex-wrap:wrap;margin-top:28px}
+.certs .c{height:60px;padding:8px 14px;border-radius:var(--r-sm);background:#fff;display:grid;place-items:center}
+.certs .c img{height:46px;width:auto}
+.certs span{font-size:14px;color:#BFD0EE;max-width:300px;margin-left:8px}
+
+/* ---------- footer reveal ---------- */
+.spacer{height:100vh;height:100svh}
+footer.site{position:fixed;left:0;right:0;bottom:0;height:100vh;height:100svh;z-index:1;background:var(--bg-2);display:flex;flex-direction:column;justify-content:space-between;padding:var(--sec) var(--gut) 28px;overflow:hidden}
+.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.f-top h3{margin:0 0 14px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.f-top ul{list-style:none;margin:0;padding:0;line-height:2;font-size:15px}
+.f-logo{height:84px;width:auto;margin-bottom:14px}
+.news p{font-size:var(--t-h3);font-weight:700;line-height:1.05;letter-spacing:-.035em;margin:0 0 18px;max-width:420px}
+.news form{display:flex;gap:8px;max-width:420px}
+.news input{flex:1;min-width:0;height:50px;border-radius:99px;border:0;padding:0 20px;font:inherit;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+.news input:focus{outline:2px solid var(--blue)}
+.wordmark{width:100%;height:auto;margin-top:auto}
+.f-bot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
+.drop{animation:drop var(--t,3s) ease-in infinite;animation-delay:var(--d,0s)}
+@keyframes drop{0%{transform:translateY(-10px) scale(.6)}35%{transform:translateY(6px) scale(1)}100%{transform:translateY(80px) scale(.55);opacity:0}}
+
+/* ---------- toast + fly ---------- */
+.toast{position:fixed;left:50%;bottom:26px;z-index:80;transform:translate(-50%,220%);background:var(--ink);color:#fff;border-radius:99px;padding:12px 20px 12px 12px;display:flex;align-items:center;gap:12px;font-size:14px;transition:transform .6s var(--ease);box-shadow:0 20px 40px -12px rgba(0,0,0,.35);max-width:calc(100vw - 32px)}
+.toast.show{transform:translate(-50%,0)}
+.toast i{width:30px;height:30px;border-radius:50%;flex:none}
+.fly{position:fixed;z-index:90;width:22px;height:22px;border-radius:50%;pointer-events:none;box-shadow:inset -3px -4px 0 rgba(0,0,0,.08)}
+
+/* ---------- responsive ---------- */
+@media (max-height:760px) and (min-width:821px){.hero-sub{display:none}.hfl{margin-top:24px;padding-top:20px}.hfl p{margin-bottom:16px}}
+@media (max-width:1180px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .city-grid{grid-template-columns:1fr 1fr}.mid{grid-column:1/-1;flex-direction:row}.mid > *{flex:1}
+  .f-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:980px){
+  .nav{display:none}
+  .menu-btn{display:grid}
+  .bar{grid-template-columns:auto 1fr auto;padding:0 8px 0 8px;height:62px}
+  .logo{justify-self:start;height:62px;margin-left:4px}
+  .logo img{height:70px}
+  header.site.scrolled .logo img{height:58px}
+}
+@media (max-width:820px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:var(--gap-s)}
+  .case{padding:12px}
+  .tub .tray{height:118px}.tub h3{font-size:17px}
+  :root{--mq:60px;--sec:88px;--head:36px;--pad:22px;--gap:14px;--r-lg:26px;--r-md:20px}
+  .hero{min-height:600px;--sx:50%}
+  .marq .seq{font-size:22px;gap:22px;padding-right:22px}.marq .seq svg{width:20px;height:20px}
+  /* phones: centre headlines, intros and the hero; cards and lists keep their own alignment */
+  .hero-copy,.hfl{text-align:center}
+  .hfl .idx,.hfl .row{justify-content:center}
+  .hfl .row{text-align:left}
+  .sec-h{flex-direction:column;align-items:center;text-align:center}
+  .st-head{text-align:center}.st-head p{margin:0 auto}
+  .cake-copy{text-align:center}.cake-copy > p{margin-left:auto;margin-right:auto}
+  .cake-now{text-align:left}.sizes{justify-content:center}
+  .biz-top > div:first-child{text-align:center}.biz-intro{margin-left:auto;margin-right:auto}.stats{margin:0 auto}
+  .notin{text-align:center}.notin .ln{margin:0 auto}.notin .last{justify-items:center}.notin .last p{margin:0 auto}
+  .notin .flag{margin:0 auto 22px!important}.halal{margin:26px auto 0;text-align:left}
+  .filters{justify-content:center}
+  .news{text-align:center}.f-logo{margin:0 auto 14px}.news p{margin:0 auto 18px}.news form{margin:0 auto}
+  .certs{justify-content:center}.certs span{margin:6px 0 0;text-align:center}
+  .f-bot{flex-direction:column;align-items:center;gap:4px;text-align:center}
+  .hero-copy{top:96px;bottom:18px;left:20px;right:20px;width:auto;transform:none;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none}
+  .hero-copy > *{pointer-events:auto}
+  .hero-copy .eyebrow,.hero-sub{display:none}
+  .hero-copy h1{margin-top:0;font-size:38px}
+  .hfl{margin-top:0;padding:16px;border:0;border-radius:22px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 0 0 1px rgba(17,19,24,.06)}
+  .hfl p{display:none}.hfl h2{margin:8px 0 12px}
+  /* scoop fills the gap between the headline and the tabs */
+  .hero{--cw:min(62vw,340px,calc((max(100svh - var(--mq),600px) - 420px) * .8))}
+  .hero-canvas{width:var(--cw);top:calc(50% - 14px);transform:translate(-50%,-50%)}
+  .hero-shadow{top:calc(50% - 14px + var(--cw) * .56)}
+  .tabs{bottom:176px;padding:4px}
+  .tab{padding:0 7px;height:34px}.tab span{display:none}.tab i{width:22px;height:22px}
+  .notin .last{grid-template-columns:1fr}
+  .st-head{grid-template-columns:1fr}
+  .pn-row{flex-direction:column;height:auto}
+  .pn{flex:none;height:88px;transition:height .8s var(--ease)}
+  .pn.on{flex:none;height:440px}
+  .pn .pn-vt{writing-mode:horizontal-tb;transform:none;left:24px;bottom:auto;top:28px;font-size:30px}
+  .pn .pn-top{display:none}
+  .pn .pn-prog{top:auto;bottom:14px}
+  .cake-grid,.biz-top{grid-template-columns:1fr}
+  .thumbs{gap:8px}.thumb{padding:6px 6px 8px;border-radius:16px}.thumb b{font-size:12px}
+  .city-grid{grid-template-columns:1fr}.mid{flex-direction:column}
+
+  
+  .biz{border-radius:30px}
+  .f-top{grid-template-columns:1fr;gap:24px}
+  .f-top > div:not(.news){display:none}
+  .ctry button{padding:0 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M6 7h12l-1.2 12.2a1 1 0 0 1-1 .8H8.2a1 1 0 0 1-1-.8zM9 7a3 3 0 0 1 6 0"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-van" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="17.5" r="1.8" fill="#fff" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-scoop" viewBox="0 0 32 32"><path d="M9 15l7 14 7-14z" fill="#E0B070"/><circle cx="16" cy="11" r="8" fill="currentColor"/></symbol>
+    <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="b"/><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter>
+  </defs>
+</svg>
+
+
+<header class="site" id="hdr">
+  <div class="bar">
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false"><i></i></button>
+    <nav class="nav" aria-label="Main"><a href="#shop">Shop</a><a href="#cakes">Cakes</a><a href="#story">Our story</a></nav>
+    <a class="logo" href="#top" aria-label="Gelatomio home"><img src="assets/gelatomio/logo-400x400.png" alt="Gelatomio, Traditional Italian Ice Cream"></a>
+    <div class="bar-r">
+      <nav class="nav" aria-label="More"><a href="#outlets">Outlets</a><a href="#business">For business</a></nav>
+      <div class="ctry" role="group" aria-label="Country">
+        <span class="pill" aria-hidden="true"></span>
+        <button type="button" data-c="SG" aria-pressed="false">SG</button>
+        <button type="button" data-c="MY" aria-pressed="false">MY</button>
+      </div>
+      <button class="cart" id="cart" type="button" aria-label="Cart"><svg><use href="#i-cart"/></svg><span class="count" id="count">0</span></button>
+    </div>
+  </div>
+</header>
+<nav class="menu" id="menu" aria-label="Menu">
+  <a href="#shop">Shop</a><a href="#cakes">Ice cream cakes</a><a href="#story">Our story</a><a href="#outlets">Outlets</a><a href="#business">For business</a>
+  <div class="foot">Traditional Italian ice cream · Singapore and Malaysia</div>
+</nav>
+
+<main>
+<!-- ================= HERO (slider) ================= -->
+<section class="hero" id="top" aria-roledescription="carousel" aria-label="Our flavours">
+  <div class="hero-glow"></div>
+  <div class="hero-word" aria-hidden="true" id="word"></div>
+  <div class="ingr" id="ingr" aria-hidden="true"></div>
+  <div class="hero-shadow" aria-hidden="true"></div>
+  <div class="hero-canvas" id="scoopBox"><canvas id="scoop" role="img" aria-label="A scoop of gelato in a waffle cone"></canvas></div>
+  <div class="hero-copy">
+    <div class="eyebrow">Benvenuto · Singapore &amp; Malaysia</div>
+    <h1>Fresh gelato,<br><em>made every day.</em></h1>
+    <p class="hero-sub">Small-batch gelato made the traditional Italian way, with no animal fat, colouring or preservatives.</p>
+    <div class="hfl" id="flCard" aria-live="polite">
+      <div id="flSwap">
+        <div class="idx"><span id="flIdx">01 / 04</span><i></i><span id="flKind">Nutty</span></div>
+        <h2 id="flName">Pistachio</h2>
+        <p id="flDesc"></p>
+      </div>
+      <div class="row">
+        <button class="btn" id="heroAdd" type="button"><svg><use href="#i-plus"/></svg>Add to cart</button>
+        <div><span class="price" id="heroPrice" data-sg="16.90" data-my="42.00"><span></span></span><div class="unit">770 ml tub</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="tabs" id="tabs" role="tablist" aria-label="Choose a flavour"></div>
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<section class="marq" aria-label="Our promise">
+  <div class="track" id="marq"></div>
+  <svg class="drip-edge" viewBox="0 0 1440 26" preserveAspectRatio="none" aria-hidden="true"><path fill="#111318" d="M0 0h1440v6c-40 0-48 18-70 18s-26-18-60-18-60 12-92 12-40-12-80-12-44 20-68 20-28-20-70-20-70 8-110 8-50-8-90-8-52 16-80 16-30-16-66-16-46 10-80 10-40-10-86-10-46 18-72 18-26-18-60-18-44 8-82 8-40-8-76-8-40 14-64 14-28-14-58-14-38 6-62 6-26-6-44-6z"/></svg>
+</section>
+
+<!-- ================= NOT IN IT ================= -->
+<section class="notin wrap" aria-label="What is not in our gelato">
+  <div class="eyebrow reveal">What you won't find in ours</div>
+  <span class="ln">Animal fat.</span>
+  <span class="ln">Artificial colouring.</span>
+  <span class="ln">Preservatives.</span>
+  <span class="ln">Shortcuts.</span>
+  <div class="last reveal">
+    <div><div class="flag" style="margin-bottom:22px"><i></i><i></i><i></i></div><p>Just <b>milk, fruit, nuts</b> and a slow churn, the traditional Italian way, made fresh every morning.</p>
+    <div class="halal"><img src="assets/gelatomio/halal-120x120.jpg" alt="Halal Malaysia logo"><div><b>JAKIM Halal certified</b><br>Food safety first, every batch</div></div></div>
+    <div class="ph"><img id="parImg" src="assets/gelatomio/hands-cup-840x630.jpg" alt="Two scoops of Gelatomio gelato held in a silver cup"></div>
+  </div>
+</section>
+
+<!-- ================= SHOP ================= -->
+<section class="shop wrap" id="shop" aria-label="Shop gelato">
+  <div class="sec-h">
+    <div><div class="eyebrow">Shop online</div><h2>Today's <em>case.</em></h2></div>
+    <div class="side">Pick your flavours, we pack them cold and bring them to your door.<br><span class="deliv"><svg><use href="#i-van"/></svg><span data-delivery></span></span></div>
+  </div>
+  <div class="filters" id="filters" role="group" aria-label="Filter flavours">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="fruity" aria-pressed="false">Fruity</button>
+    <button type="button" data-f="nutty" aria-pressed="false">Nutty</button>
+    <button type="button" data-f="choc" aria-pressed="false">Chocolate</button>
+    <button type="button" data-f="df" aria-pressed="false">Dairy-free</button>
+    <button type="button" data-f="local" aria-pressed="false">Local favourites</button>
+  </div>
+  <div class="case" id="case"><div class="grid" id="grid"></div></div>
+</section>
+
+<!-- ================= STORY (spotlight) ================= -->
+<section class="story wrap" id="story" aria-label="How we make it">
+  <div class="st-head">
+    <div><div class="eyebrow">Our story</div><h2>Made this morning, <em>before the city wakes up.</em></h2></div>
+    <p>Gelato is best on the day it's made. So we make it every day, in small batches, and only what we need. Here's how a morning goes.</p>
+  </div>
+  <div class="pn-row" id="pnRow"></div>
+</section>
+
+<!-- ================= CAKES ================= -->
+<section class="cakes wrap" id="cakes" aria-label="Ice cream cakes">
+  <div class="cake-grid">
+    <div>
+      <div class="stack" id="stack" role="button" tabindex="0" aria-label="Show the next cake"></div>
+      <div class="thumbs" id="thumbs" role="group" aria-label="Choose a cake"></div>
+    </div>
+    <div class="cake-copy">
+      <div class="eyebrow">Ice cream cakes</div>
+      <h2>For the days that <em>need a cake.</em></h2>
+      <p>Layers of fresh gelato on a crunchy base, with your message on top. Pick a cake, a size and a day.</p>
+      <div class="cake-now"><div><div class="from" id="cakeOcc">Birthdays</div><div class="nm" id="cakeName">Strawberry Vanilla</div></div><div style="text-align:right"><div class="from" id="cakeSize">6 inch</div><span class="price" id="cakePrice" data-sg="62.00" data-my="158.00"><span></span></span></div></div>
+      <div class="sizes" id="sizes" role="group" aria-label="Cake size">
+        <button type="button" data-s="6" aria-pressed="true">6 inch · serves 6</button>
+        <button type="button" data-s="8" aria-pressed="false">8 inch · serves 10</button>
+      </div>
+      <div class="dates" id="dates" role="group" aria-label="Pick a day"></div>
+      <p class="dates-note">Cakes need 2 days' notice. Pick up in store or have it delivered.</p>
+      <button class="btn" id="cakeAdd" type="button"><svg><use href="#i-plus"/></svg>Add cake to cart</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TWO CITIES ================= -->
+<section class="cities wrap" id="outlets" aria-label="Where to find us">
+  <div class="sec-h">
+    <div><div class="eyebrow">Where to find us</div><h2>Two cities, <em>one scoop.</em></h2></div>
+    <div class="side">One Gelatomio, two homes. Choose your city to see local prices, delivery and outlets across the whole site.</div>
+  </div>
+  <div class="city-grid">
+    <article class="pc" data-c="MY">
+      <div class="sky">
+        <span class="badge">Malaysia · MYR</span><span class="yours">Your city</span>
+        <svg viewBox="0 0 400 200" aria-hidden="true">
+          <circle class="sun" cx="272" cy="78" r="16"/>
+          <path class="fl" d="M152 190V80l4-20 4-20 4-10 2-22 2 22 4 10 4 20 4 20v110zM208 190V80l4-20 4-20 4-10 2-22 2 22 4 10 4 20 4 20v110z"/>
+          <path class="ln" pathLength="1" d="M0 190H400"/>
+          <path class="ln" pathLength="1" d="M20 190V150H60V190M64 190V128H98V190M296 190V138H338V190M342 190V160H392V190"/>
+          <path class="ln" pathLength="1" d="M152 190V80l4-20 4-20 4-10 2-22 2 22 4 10 4 20 4 20v110"/>
+          <path class="ln" pathLength="1" d="M208 190V80l4-20 4-20 4-10 2-22 2 22 4 10 4 20 4 20v110"/>
+          <path class="ln" pathLength="1" d="M180 112H208M184 112l10 13 10-13M156 100h20M156 130h20M156 160h20M212 100h20M212 130h20M212 160h20"/>
+          <path class="ln" pathLength="1" d="M118 190V74M124 190V74M106 74H136L131 60H111ZM121 60V22"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3>Kuala Lumpur</h3>
+        <ul>
+          <li><svg><use href="#i-pin"/></svg><span><b>Pavilion Kuala Lumpur</b><br>Level 4, Jalan Bukit Bintang</span></li>
+          <li><svg><use href="#i-pin"/></svg><span><b>Lot 10</b><br>Jalan Bukit Bintang</span></li>
+          <li><svg><use href="#i-van"/></svg><span>Klang Valley delivery, packed cold</span></li>
+        </ul>
+        <div class="from"><div><small>A tub from</small><span class="price" data-my="34.00" data-fixed="MY"><span></span></span></div><button class="btn dark" type="button" data-shop="MY">Shop Malaysia<svg><use href="#i-arrow"/></svg></button></div>
+      </div>
+    </article>
+
+    <div class="mid">
+      <div class="route-card">
+        <h3>One recipe,<br><em>two cities.</em></h3>
+        <p>The same traditional Italian recipe and daily batches, whether you're in KL or Singapore.</p>
+        <svg viewBox="0 0 220 200" aria-hidden="true">
+          <path class="route" d="M40 30 C 150 30, 60 150, 170 170" fill="none" stroke="#5E6776" stroke-width="2"/>
+          <circle class="pulse" cx="40" cy="30" r="9" fill="#1877F2"/><circle cx="40" cy="30" r="7" fill="#fff"/>
+          <circle class="pulse" cx="170" cy="170" r="9" fill="#1877F2" style="animation-delay:-1.2s"/><circle cx="170" cy="170" r="7" fill="#fff"/>
+          <text x="54" y="26" font-family="Outfit, sans-serif" font-size="13" font-weight="700" fill="#fff">KL</text>
+          <text x="150" y="194" font-family="Outfit, sans-serif" font-size="13" font-weight="700" fill="#fff" text-anchor="end">SG</text>
+          <g class="traveller"><circle r="9" fill="#C3E24C"/></g>
+        </svg>
+      </div>
+      <div class="check">
+        <b>Do we deliver to you?</b>
+        <p id="chkHint">Enter your postcode to check.</p>
+        <form id="chk"><input id="chkIn" inputmode="numeric" autocomplete="postal-code" aria-label="Postcode" placeholder="e.g. 50450"><button class="btn" type="submit">Check</button></form>
+        <div class="res" id="chkRes" role="status"><i></i><span></span></div>
+      </div>
+    </div>
+
+    <article class="pc" data-c="SG">
+      <div class="sky">
+        <span class="badge">Singapore · SGD</span><span class="yours">Your city</span>
+        <svg viewBox="0 0 400 200" aria-hidden="true">
+          <circle class="sun" cx="364" cy="96" r="16"/>
+          <path class="fl" d="M150 190V70l12-4v124zM180 190V66l12-4v128zM210 190V62l12-4v132zM138 66q48-16 100-12l2 7q-50-2-102 12z"/>
+          <path class="ln" pathLength="1" d="M0 190H400"/>
+          <path class="ln" pathLength="1" d="M80 110m-44 0a44 44 0 1 0 88 0a44 44 0 1 0-88 0M80 66V154M36 110H124M49 79l62 62M111 79l-62 62M70 190l10-36 10 36"/>
+          <path class="ln" pathLength="1" d="M150 190V70l12-4v124M180 190V66l12-4v128M210 190V62l12-4v132"/>
+          <path class="ln" pathLength="1" d="M138 66q48-16 100-12l2 7q-50-2-102 12z"/>
+          <path class="ln" pathLength="1" d="M276 190l4-66 4 66M254 124q26-22 52 0q-26-9-52 0M316 190l3-50 3 50M300 140q19-16 38 0q-19-7-38 0"/>
+          <path class="ln" pathLength="1" d="M350 190V148H392V190M130 190V160H146V190"/>
+        </svg>
+      </div>
+      <div class="body">
+        <h3>Singapore</h3>
+        <ul>
+          <li><svg><use href="#i-van"/></svg><span><b>Island-wide delivery</b><br>Packed cold, to your door</span></li>
+          <li><svg><use href="#i-pin"/></svg><span><b>Pick-up points</b><br>To be announced</span></li>
+          <li><svg><use href="#i-check"/></svg><span>Prices in Singapore dollars</span></li>
+        </ul>
+        <div class="from"><div><small>A tub from</small><span class="price" data-sg="13.90" data-fixed="SG"><span></span></span></div><button class="btn dark" type="button" data-shop="SG">Shop Singapore<svg><use href="#i-arrow"/></svg></button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= BUSINESS ================= -->
+<section class="biz" id="business" aria-label="For business">
+  <span class="glow g1"></span><span class="glow g2"></span>
+  <div class="wrap">
+    <div class="biz-top">
+      <div>
+        <div class="eyebrow">For hotels, cafes and restaurants</div>
+        <h2>Gelato for <em>your menu.</em></h2>
+        <p class="biz-intro">We make gelato for businesses across West Malaysia, from 5 litre tubs for your counter to your very own custom flavour.</p>
+        <div class="stats">
+          <div class="stat"><b>2012</b><span>Supplying businesses since</span></div>
+          <div class="stat"><b>OEM</b><span>Custom flavours, made for you</span></div>
+          <div class="stat"><b>Halal</b><span>JAKIM certified</span></div>
+          <div class="stat"><b>West MY</b><span>Delivery network</span></div>
+        </div>
+        <div class="certs"><div class="c"><img loading="lazy" src="assets/gelatomio/halal-200x200.jpg" alt="Halal Malaysia"></div><div class="c"><img loading="lazy" src="assets/gelatomio/sgs-500x140.jpg" alt="SGS certifications"></div><div class="c"><img loading="lazy" src="assets/gelatomio/veterinary-inspected-200x200.jpg" alt="Veterinary Inspected Malaysia"></div><span>Certified and inspected, so you can serve it with confidence.</span></div>
+      </div>
+      <div class="builder" id="builder">
+        <h3>Plan your trade order</h3>
+        <p class="sub">Tell us what you need. Our trade team replies with a quote and samples.</p>
+        <div class="q"><div class="ql">Your business</div><div class="chips single" data-q="type">
+          <button class="chip" type="button" aria-pressed="true">Cafe</button><button class="chip" type="button" aria-pressed="false">Hotel</button><button class="chip" type="button" aria-pressed="false">Restaurant</button><button class="chip" type="button" aria-pressed="false">Events and catering</button>
+        </div></div>
+        <div class="q"><div class="ql">What you need</div><div class="chips" data-q="formats">
+          <button class="chip" type="button" aria-pressed="true">5 L tubs</button><button class="chip" type="button" aria-pressed="false">Retail tubs</button><button class="chip" type="button" aria-pressed="false">Gelato cart</button><button class="chip" type="button" aria-pressed="false">Custom flavour</button>
+        </div></div>
+        <div class="q"><label for="nFl">Flavours <span id="nVal">6</span></label><div class="range"><input type="range" id="nFl" min="2" max="12" value="6"></div><div class="scoops" id="scoops"></div></div>
+        <div class="q"><div class="ql">Delivery</div><div class="chips single" data-q="freq">
+          <button class="chip" type="button" aria-pressed="true">Weekly</button><button class="chip" type="button" aria-pressed="false">Every 2 weeks</button><button class="chip" type="button" aria-pressed="false">One-off event</button>
+        </div></div>
+        <div class="summary" id="summary"></div>
+        <button class="btn dark" id="sendTrade" type="button">Send to our trade team<svg><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div style="height:var(--sec)"></div>
+</main>
+<div class="spacer" aria-hidden="true"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site" aria-label="Footer">
+  <div class="f-top">
+    <div class="news"><img class="f-logo" src="assets/gelatomio/logo-400x400.png" alt="Gelatomio"><p>A new flavour every month. Be the first to taste it.</p><form id="newsForm"><input type="email" required placeholder="Your email" aria-label="Email address"><button class="btn" type="submit">Join</button></form></div>
+    <div><h3>Shop</h3><ul><li><a href="#shop">Gelato tubs</a></li><li><a href="#cakes">Ice cream cakes</a></li><li><a href="#shop">Gift cards</a></li><li><a href="#shop">Delivery FAQ</a></li></ul></div>
+    <div><h3>Visit</h3><ul><li>Pavilion KL, Level 4</li><li>Lot 10, Bukit Bintang</li><li>Singapore delivery</li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="#story">Our story</a></li><li><a href="#business">For business</a></li><li><a href="#business">Franchise with us</a></li><li><a href="#top">Halal and food safety</a></li></ul></div>
+  </div>
+  <svg class="wordmark" viewBox="0 0 1000 300" aria-label="Gelatomio">
+    <g filter="url(#goo)" fill="#1877F2">
+      <text x="500" y="205" text-anchor="middle" font-family="Lobster, cursive" font-size="250">Gelatomio</text>
+      <g id="drips"></g>
+    </g>
+  </svg>
+  <div class="f-bot"><span>© 2026 Gelatomio · Singapore and Malaysia</span><span>Traditional Italian ice cream</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><i id="toastDot"></i><span id="toastTxt"></span></div>
+
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const smooth = (a, b, x) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
+const easeIO = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+
+/* ---------- data (illustrative) ---------- */
+const FLAVOURS = [
+  { word: 'Pistacchio', name: 'Pistachio', kind: 'Nutty', desc: 'Roasted pistachios, ground slowly into fresh milk. Nutty, soft and never too sweet.', sg: 16.9, my: 42, notes: ['Roasted pistachio', 'Fresh milk', 'A pinch of salt'],
+    base: '#B8CC86', speck: '#6B7A36', speckAmt: .9, swirl: '#A3B96E', swirlAmt: .3 },
+  { word: 'Fragola', name: 'Strawberry', kind: 'Fruity', desc: 'Ripe strawberries folded through fresh cream, with real pieces of fruit in every scoop.', sg: 14.9, my: 36, notes: ['Ripe strawberries', 'Fresh cream', 'Nothing artificial'],
+    base: '#F3B3BD', speck: '#B8263D', speckAmt: .5, swirl: '#DE5670', swirlAmt: .9 },
+  { word: 'Cioccolato', name: 'Dark chocolate', kind: 'Chocolate', desc: 'Deep, dark and silky. Made with real cocoa and dark chocolate shavings.', sg: 15.9, my: 38, notes: ['Dark cocoa', 'Chocolate shavings', 'Fresh milk'],
+    base: '#6B3F2A', speck: '#2A160E', speckAmt: .8, swirl: '#8E5C42', swirlAmt: .35 },
+  { word: 'Mango', name: 'Mango sorbet', kind: 'Dairy-free', desc: 'Sweet, sunny mangoes blended into a bright sorbet. No milk at all.', sg: 13.9, my: 34, notes: ['Ripe mango', 'A squeeze of lime', 'Dairy-free'],
+    base: '#FFC857', speck: '#F29E1F', speckAmt: .35, swirl: '#FFE3A0', swirlAmt: .7 }
+];
+const SHOP = [
+  { name: 'Pistachio', note: 'Roasted pistachio, fresh milk', sg: 16.9, my: 42, c: '#B8CC86', s: '#6B7A36', tags: ['nutty'], badge: 'Best seller' },
+  { name: 'Strawberry', note: 'Real fruit pieces', sg: 14.9, my: 36, c: '#F3B3BD', s: '#C0283F', tags: ['fruity'] },
+  { name: 'Dark chocolate', note: 'Cocoa and chocolate shavings', sg: 15.9, my: 38, c: '#6B3F2A', s: '#2A160E', tags: ['choc'] },
+  { name: 'Mango sorbet', note: 'Dairy-free, bright and sunny', sg: 13.9, my: 34, c: '#FFC857', s: '#F29E1F', tags: ['fruity', 'df'] },
+  { name: 'Vanilla bean', note: 'Real vanilla, tiny black seeds', sg: 13.9, my: 34, c: '#F6EBD2', s: '#3A2A20', tags: [] },
+  { name: 'Hazelnut', note: 'Toasted hazelnut, smooth', sg: 15.9, my: 38, c: '#C8A07A', s: '#7A5234', tags: ['nutty'] },
+  { name: 'Salted gula melaka', note: 'Palm sugar, a little salt', sg: 15.9, my: 38, c: '#B9814E', s: '#6E4020', tags: ['local'], badge: 'Local' },
+  { name: 'Musang King durian', note: 'The king of fruits, rich and creamy', sg: null, my: 48, c: '#F1D77A', s: '#C9A43A', tags: ['fruity', 'local'] }
+];
+const CAKES = [
+  { name: 'Strawberry Vanilla', occ: 'Birthdays', sg: [62, 82], my: [158, 208], top: '#F3B3BD', l1: '#F6EBD2', l2: '#F3B3BD', deco: '#DE5670' },
+  { name: 'Pistachio Rose', occ: 'Anniversaries', sg: [68, 88], my: [168, 218], top: '#B8CC86', l1: '#F6EBD2', l2: '#B8CC86', deco: '#F3B3BD' },
+  { name: 'Double Chocolate', occ: 'Celebrations', sg: [65, 85], my: [165, 215], top: '#4A2A1C', l1: '#8E5C42', l2: '#6B3F2A', deco: '#F6EBD2' },
+  { name: 'Mango Passion', occ: 'Open houses', sg: [64, 84], my: [160, 210], top: '#FFC857', l1: '#FFF3D6', l2: '#FFC857', deco: '#F2A81D' }
+];
+const COUNTRY = {
+  SG: { delivery: 'Island-wide delivery · free over S$60', ph: 'e.g. 018956', hint: 'Enter your 6-digit postal code.' },
+  MY: { delivery: 'Klang Valley delivery · free over RM150', ph: 'e.g. 50450', hint: 'Enter your 5-digit postcode.' }
+};
+
+/* ---------- country + prices ---------- */
+let country = store.get('gm-country');
+if (country !== 'SG' && country !== 'MY') country = 'MY';
+const money = (v, c) => (c === 'SG' ? 'S$' : 'RM') + Number(v).toFixed(2);
+function priceText(el) {
+  const c = el.dataset.fixed || country;
+  const v = c === 'SG' ? el.dataset.sg : el.dataset.my;
+  return v ? money(v, c) : 'Malaysia only';
+}
+function setPrice(el, animate) {
+  const inner = el.firstElementChild || el.appendChild(document.createElement('span'));
+  const txt = priceText(el);
+  if (inner.textContent === txt) return;
+  if (!animate || reduced) { inner.textContent = txt; return; }
+  inner.animate([{ transform: 'none', opacity: 1 }, { transform: 'translateY(-100%)', opacity: 0, filter: 'blur(4px)' }], { duration: 220, easing: 'ease-in' }).onfinish = () => {
+    inner.textContent = txt;
+    inner.animate([{ transform: 'translateY(100%)', opacity: 0, filter: 'blur(4px)' }, { transform: 'none', opacity: 1, filter: 'blur(0)' }], { duration: 420, easing: 'cubic-bezier(.22,1,.36,1)' });
+  };
+}
+function setCountry(c, animate) {
+  country = c; store.set('gm-country', c);
+  $$('.ctry button').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === c));
+  const btn = $('.ctry button[data-c="' + c + '"]'), pill = $('.ctry .pill');
+  pill.style.width = btn.offsetWidth + 'px';
+  pill.style.transform = 'translateX(' + (btn.offsetLeft - 4) + 'px)';
+  $$('.price').forEach((el, i) => setTimeout(() => setPrice(el, animate), animate ? i * 15 : 0));
+  $$('[data-delivery]').forEach(el => el.textContent = COUNTRY[c].delivery);
+  $$('.pc').forEach(el => el.classList.toggle('on', el.dataset.c === c));
+  $('#chkIn').placeholder = COUNTRY[c].ph; $('#chkHint').textContent = COUNTRY[c].hint;
+  $('#chkRes').className = 'res';
+  $$('.tub').forEach(t => {
+    const na = c === 'SG' && !t.dataset.sg;
+    t.classList.toggle('na', na);
+    const a = t.querySelector('.add'); a.disabled = na;
+    a.setAttribute('aria-label', na ? 'Not available in Singapore' : 'Add ' + t.dataset.name + ' to cart');
+  });
+}
+$$('.ctry button').forEach(b => b.addEventListener('click', () => setCountry(b.dataset.c, true)));
+
+/* ---------- cart + toast ---------- */
+let cartN = 0, toastT;
+function toast(msg, color) {
+  $('#toastTxt').textContent = msg; $('#toastDot').style.background = color || 'var(--blue)';
+  $('#toast').classList.add('show'); clearTimeout(toastT);
+  toastT = setTimeout(() => $('#toast').classList.remove('show'), 2600);
+}
+function addToCart(fromEl, name, color, label) {
+  const a = fromEl.getBoundingClientRect(), cart = $('#cart'), b = cart.getBoundingClientRect();
+  const dot = document.createElement('div'); dot.className = 'fly'; dot.style.background = color;
+  dot.style.left = (a.left + a.width / 2 - 11) + 'px'; dot.style.top = (a.top + a.height / 2 - 11) + 'px';
+  document.body.appendChild(dot);
+  const dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+  const done = () => {
+    dot.remove(); cartN++; $('#count').textContent = cartN;
+    cart.classList.remove('bump'); void cart.offsetWidth; cart.classList.add('bump');
+    toast('Added ' + name + ' · ' + label, color);
+  };
+  hdr.classList.remove('hide');
+  if (reduced) { done(); return; }
+  dot.animate([
+    { transform: 'translate(0,0) scale(1.4)' },
+    { transform: `translate(${dx * .45}px,${dy * .45 - 140}px) scale(1.1)`, offset: .45 },
+    { transform: `translate(${dx}px,${dy}px) scale(.4)` }
+  ], { duration: 800, easing: 'cubic-bezier(.5,0,.3,1)' }).onfinish = done;
+}
+
+/* ---------- header: hide on scroll down, menu ---------- */
+const hdr = $('#hdr');
+let lastSY = scrollY, menuOpen = false;
+function onHdr() {
+  const y = scrollY;
+  hdr.classList.toggle('scrolled', y > 24);
+  if (Math.abs(y - lastSY) < 6) return;
+  lastSY = y;
+}
+const menuBtn = $('#menuBtn');
+function setMenu(open) {
+  menuOpen = open; document.body.classList.toggle('menu-open', open);
+  menuBtn.setAttribute('aria-expanded', open); menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  hdr.classList.remove('hide');
+}
+menuBtn.addEventListener('click', () => setMenu(!menuOpen));
+$$('#menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) setMenu(false); });
+// highlight the section in view
+const navMap = new Map($$('.bar .nav a').map(a => [a.getAttribute('href').slice(1), a]));
+const secIO = new IntersectionObserver(es => es.forEach(e => { const a = navMap.get(e.target.id); if (a) a.classList.toggle('on', e.isIntersecting); }), { rootMargin: '-45% 0px -50% 0px' });
+[...navMap.keys()].forEach(id => { const el = document.getElementById(id); if (el) secIO.observe(el); });
+
+/* ---------- hero slider: text, ingredients, tabs ---------- */
+const word = $('#word'), ingr = $('#ingr'), tabs = $('#tabs');
+const mobile0 = matchMedia('(max-width: 820px)').matches;
+const INGR = [
+  () => `<svg viewBox="0 0 60 44"><ellipse cx="30" cy="22" rx="24" ry="17" fill="#C8A070"/><ellipse cx="32" cy="22" rx="17" ry="12" fill="#9DB36A"/><ellipse cx="28" cy="18" rx="6" ry="3" fill="#C7D99A" opacity=".8"/></svg>`,
+  () => `<svg viewBox="0 0 60 64"><path d="M30 60C12 48 6 34 8 24c2-10 12-14 22-10 10-4 20 0 22 10 2 10-4 24-22 36z" fill="#E2566F"/><g fill="#FFE6A0">${[[20,30],[30,26],[40,30],[24,40],[36,40],[30,50]].map(p => `<ellipse cx="${p[0]}" cy="${p[1]}" rx="1.6" ry="2.4"/>`).join('')}</g><path d="M18 14c6 2 8 4 12 0 4 4 6 2 12 0-4-6-8-8-12-4-4-4-8-2-12 4z" fill="#6E9A4A"/></svg>`,
+  () => `<svg viewBox="0 0 60 50"><path d="M8 12l30-6 16 22-30 14z" fill="#3A2016"/><path d="M8 12l30-6 16 22-30 14z" fill="none" stroke="#6B3F2A" stroke-width="3"/><path d="M20 14l18-4M22 22l20-5M26 30l18-6" stroke="#5A3322" stroke-width="2"/></svg>`,
+  () => `<svg viewBox="0 0 60 60"><rect x="8" y="8" width="44" height="44" rx="12" fill="#F2A81D" transform="rotate(12 30 30)"/><rect x="14" y="12" width="20" height="10" rx="5" fill="#FFE3A0" opacity=".7" transform="rotate(12 30 30)"/></svg>`
+];
+const SPOTS = mobile0 ? [[14, 40, 32, -18], [86, 34, 26, 22], [84, 62, 36, -12]] : [[50, 30, 46, -18], [85, 24, 36, 22], [86, 68, 50, -12]];
+FLAVOURS.forEach((f, i) => {
+  const g = document.createElement('div'); g.className = 'grp' + (i === 0 ? ' on' : '');
+  g.innerHTML = SPOTS.map((s, k) => `<div class="it" data-depth="${(k % 3) + 1}" style="--x:${s[0]}%;--y:${s[1]}%;--s:${s[2]}px;--r:${s[3]}deg;--d:${-k * .8}s">${INGR[i]()}</div>`).join('');
+  ingr.appendChild(g);
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab');
+  b.style.setProperty('--c', f.base); b.innerHTML = `<i></i><span>${f.name}</span><em class="bar-p"></em>`;
+  b.addEventListener('click', () => go(i, true));
+  tabs.appendChild(b);
+});
+const mctx = document.createElement('canvas').getContext('2d');
+// the word spans the scoop column on desktop, most of the screen on phones
+function fitWord(txt) {
+  mctx.font = 'italic 700 100px "Lobster Two", Lobster, cursive';
+  const w = mctx.measureText(txt).width * 1.04;
+  const span = innerWidth * (innerWidth > 820 ? .6 : .92);
+  word.style.fontSize = Math.min(span / w * 100, 300) + 'px';
+}
+function setWord(txt, first) {
+  const html = [...txt].map(ch => `<span>${ch}</span>`).join('');
+  const old = [...word.children];
+  if (first || reduced) { fitWord(txt); word.innerHTML = html; return; }
+  old.forEach((s, k) => s.animate([{ transform: 'none' }, { transform: 'translateY(-110%)' }], { duration: 380, delay: k * 18, easing: 'cubic-bezier(.6,0,.4,1)', fill: 'forwards' }));
+  setTimeout(() => {
+    fitWord(txt); word.innerHTML = html;
+    [...word.children].forEach((s, k) => s.animate([{ transform: 'translateY(110%)' }, { transform: 'none' }], { duration: 700, delay: k * 28, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }));
+  }, 380 + old.length * 12);
+}
+let active = -1;
+function setFlavour(i) {
+  const first = active === -1; active = i; const f = FLAVOURS[i];
+  setWord(f.word, first);
+  $$('.grp', ingr).forEach((g, k) => g.classList.toggle('on', k === i));
+  $$('.tab', tabs).forEach((b, k) => { b.classList.toggle('on', k === i); b.setAttribute('aria-selected', k === i); });
+  document.documentElement.style.setProperty('--scoop', f.base);
+  const hp = $('#heroPrice'); hp.dataset.sg = f.sg.toFixed(2); hp.dataset.my = f.my.toFixed(2);
+  const apply = () => {
+    $('#flIdx').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(FLAVOURS.length).padStart(2, '0');
+    $('#flKind').textContent = f.kind; $('#flName').textContent = f.name; $('#flDesc').textContent = f.desc;
+  };
+  const sw = $('#flSwap');
+  if (first || reduced) { apply(); setPrice(hp, false); return; }
+  sw.classList.remove('swap-in'); sw.classList.add('swap-out');
+  setPrice(hp, true);
+  setTimeout(() => { apply(); sw.classList.remove('swap-out'); sw.classList.add('swap-in'); }, 330);
+}
+// slide state: the scoop morphs from `from` to `to` over MORPH ms
+const AUTO = 6500, MORPH = 1200;
+let from = 0, to = 0, t0 = -1e9, autoT = null, heroVis = true;
+tabs.style.setProperty('--dur', AUTO + 'ms');
+function restartAuto() {
+  clearTimeout(autoT);
+  const on = $('.tab.on', tabs); $$('.tab', tabs).forEach(t => t.classList.remove('run'));
+  if (reduced || !heroVis) return;
+  if (on) { void on.offsetWidth; on.classList.add('run'); }
+  autoT = setTimeout(() => go(to + 1), AUTO);
+}
+function go(i) {
+  i = (i + FLAVOURS.length) % FLAVOURS.length;
+  if (i === to) { restartAuto(); return; }
+  from = to; to = i; t0 = performance.now();
+  setFlavour(i); restartAuto();
+}
+$('#heroAdd').addEventListener('click', e => { const f = FLAVOURS[to]; addToCart(e.currentTarget, f.name, f.base, priceText($('#heroPrice'))); });
+// pause the timer while the visitor is reading the card or the tabs
+[$('#flCard'), tabs].forEach(el => {
+  el.addEventListener('pointerenter', () => { clearTimeout(autoT); tabs.classList.add('paused'); });
+  el.addEventListener('pointerleave', () => { tabs.classList.remove('paused'); restartAuto(); });
+});
+// swipe + keys
+const heroEl = $('.hero');
+let sx = null, sy = null;
+heroEl.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; sx = e.clientX; sy = e.clientY; });
+heroEl.addEventListener('pointerup', e => {
+  if (sx === null) return;
+  const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(to + (dx < 0 ? 1 : -1));
+});
+addEventListener('keydown', e => {
+  if (!heroVis || /INPUT|TEXTAREA/.test(document.activeElement.tagName)) return;
+  if (e.key === 'ArrowRight') go(to + 1); else if (e.key === 'ArrowLeft') go(to - 1);
+});
+new IntersectionObserver(es => es.forEach(e => { heroVis = e.isIntersecting; if (heroVis) restartAuto(); else clearTimeout(autoT); }), { threshold: .35 }).observe(heroEl);
+document.addEventListener('visibilitychange', () => { if (document.hidden) clearTimeout(autoT); else restartAuto(); });
+
+/* ---------- hero: WebGL scoop ---------- */
+const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+const FS = `precision highp float;
+uniform vec2 uRes;uniform float uTime,uRot,uTilt,uMelt,uSquash,uDrop,uSteps;
+uniform vec3 uBase,uSpeck,uSwirl;uniform float uSpeckAmt,uSwirlAmt;
+float hash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
+float noise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);
+return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),
+mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);}
+float fbm(vec3 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*noise(p);p=p*2.03+1.7;a*=.5;}return s;}
+float smin(float a,float b,float k){float h=clamp(.5+.5*(b-a)/k,0.,1.);return mix(b,a,h)-k*h*(1.-h);}
+mat2 rot(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}
+float sdCone(vec3 p,float h,float r1,float r2){vec2 q=vec2(length(p.xz),p.y);vec2 k1=vec2(r2,h);vec2 k2=vec2(r2-r1,2.*h);
+vec2 ca=vec2(q.x-min(q.x,(q.y<0.)?r1:r2),abs(q.y)-h);vec2 cb=q-k1+k2*clamp(dot(k1-q,k2)/dot(k2,k2),0.,1.);
+float s=(cb.x<0.&&ca.y<0.)?-1.:1.;return s*sqrt(min(dot(ca,ca),dot(cb,cb)));}
+float sdCap(vec3 p,vec3 a,vec3 b,float r){vec3 pa=p-a,ba=b-a;float h=clamp(dot(pa,ba)/dot(ba,ba),0.,1.);return length(pa-ba*h)-r;}
+float coneR(float y){return .03+.71*(y+2.17)/1.9;}
+float drip(vec3 p,float ang,float len,float r){float y0=-.34,y1=y0-len;vec3 d=vec3(cos(ang),0.,sin(ang));
+vec3 a=d*(coneR(y0)+.03)+vec3(0.,y0,0.);vec3 b=d*(coneR(y1)+.03)+vec3(0.,y1,0.);
+return smin(sdCap(p,a,b,r),length(p-b)-r*1.4,.06);}
+vec3 toObj(vec3 p){p.y-=uDrop;p.yz=rot(uTilt)*p.yz;p.xz=rot(uRot)*p.xz;return p;}
+vec2 map(vec3 w){vec3 p=toObj(w);
+float cone=sdCone(p-vec3(0.,-1.22,0.),.95,.03,.74);
+vec3 q=p-vec3(0.,.32,0.);q.y/=(1.-.12*uSquash);q.xz/=(1.+.08*uSquash);
+float th=atan(q.z,q.x);
+float folds=.05*sin(th*5.+q.y*4.+1.8*noise(q*1.6))*smoothstep(-.5,.7,q.y);
+float scoop=length(q)-.92+folds+.06*(noise(q*3.2)-.5);
+vec3 l=p-vec3(0.,-.42,0.);float tl=atan(l.z,l.x);
+vec2 t=vec2(length(l.xz)-(.8+.04*sin(tl*13.)),l.y+.035*sin(tl*9.+1.));
+scoop=smin(scoop,length(t)-.16,.2);
+if(uMelt>.001){scoop=smin(scoop,min(drip(p,.7,1.05*uMelt,.075),min(drip(p,2.3,.6*uMelt,.06),drip(p,-1.2,.8*uMelt,.065))),.12);}
+return scoop<cone?vec2(scoop,1.):vec2(cone,2.);}
+vec3 nrm(vec3 p){vec2 e=vec2(.0015,-.0015);return normalize(e.xyy*map(p+e.xyy).x+e.yyx*map(p+e.yyx).x+e.yxy*map(p+e.yxy).x+e.xxx*map(p+e.xxx).x);}
+float ao(vec3 p,vec3 n){float o=0.,s=1.;for(int i=1;i<=4;i++){float h=.05*float(i);o+=(h-map(p+n*h).x)*s;s*=.6;}return clamp(1.-2.*o,0.,1.);}
+void main(){
+vec2 uv=(gl_FragCoord.xy-.5*uRes)/uRes.y;
+vec3 ro=vec3(0.,-.42,5.4);vec3 rd=normalize(vec3(uv,-1.36));
+vec3 c=vec3(0.,-.45+uDrop,0.);vec3 oc=ro-c;float b=dot(oc,rd);float h=b*b-(dot(oc,oc)-4.4);
+if(h<0.){gl_FragColor=vec4(0.);return;}
+float t=max(-b-sqrt(h),0.),tmax=-b+sqrt(h);vec2 m;bool hit=false;
+for(int i=0;i<110;i++){if(float(i)>uSteps)break;m=map(ro+rd*t);if(m.x<.0012*t){hit=true;break;}t+=m.x*.8;if(t>tmax)break;}
+if(!hit){gl_FragColor=vec4(0.);return;}
+vec3 p=ro+rd*t,n=nrm(p),o=toObj(p);
+vec3 L=normalize(vec3(-.55,.85,.75)),V=-rd,H=normalize(L+V);
+float a=ao(p,n);float dif=clamp((dot(n,L)+.55)/1.55,0.,1.);float fr=pow(1.-max(dot(n,V),0.),2.5);
+vec3 col;
+if(m.y<1.5){
+vec3 base=pow(uBase,vec3(2.2)),sw=pow(uSwirl,vec3(2.2)),sp=pow(uSpeck,vec3(2.2));
+float f=fbm(o*2.1+vec3(0.,uTime*.02,0.));float band=smoothstep(.47,.5,f)*(1.-smoothstep(.56,.6,f));
+col=mix(base,sw,band*uSwirlAmt);
+float s=noise(o*24.);col=mix(col,sp,step(1.-.14*uSpeckAmt,s)*step(.01,uSpeckAmt));
+col*=.94+.1*noise(o*42.);
+col=col*(.28+.85*dif)*a+base*.35*fr*a+vec3(1.)*.14*pow(max(dot(n,H),0.),22.)*a;
+col+=base*.12*(1.-dif);
+}else{
+float ang=atan(o.z,o.x);float u1=fract(ang*1.9+o.y*2.4),u2=fract(ang*1.9-o.y*2.4);
+float g=min(smoothstep(0.,.1,u1)*smoothstep(1.,.9,u1),smoothstep(0.,.1,u2)*smoothstep(1.,.9,u2));
+vec3 cw=mix(vec3(.46,.24,.08),vec3(.86,.56,.24),g);
+float sh=mix(.45,1.,smoothstep(-.3,-.75,o.y));
+col=cw*(.25+.9*dif)*a*sh+vec3(1.,.8,.5)*.06*pow(max(dot(n,H),0.),12.);
+}
+col=pow(col,vec3(1./2.2));
+gl_FragColor=vec4(col,1.);}`;
+const canvas = $('#scoop'), box = $('#scoopBox');
+let gl = null, U = {};
+try {
+  gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, antialias: false });
+  if (gl) {
+    const sh = (type, src) => { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s)); return s; };
+    const prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['uRes', 'uTime', 'uRot', 'uTilt', 'uMelt', 'uSquash', 'uDrop', 'uSteps', 'uBase', 'uSpeck', 'uSwirl', 'uSpeckAmt', 'uSwirlAmt'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
+  }
+} catch (e) { console.warn('Scoop fallback:', e); gl = null; }
+if (!gl) document.documentElement.classList.add('no-gl');
+const mobile = matchMedia('(max-width: 820px)').matches;
+function sizeCanvas() {
+  const dpr = Math.min(devicePixelRatio || 1, mobile ? 1.5 : 1.75);
+  const r = box.getBoundingClientRect();
+  canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+  if (gl) gl.viewport(0, 0, canvas.width, canvas.height);
+}
+const S = { rot: 0, tilt: 0, mx: 0, my: 0, drop: reduced ? 0 : 3.4, squash: 0, introSquash: 0, melt: 0, t0: performance.now() };
+addEventListener('pointermove', e => { S.mx = e.clientX / innerWidth - .5; S.my = e.clientY / innerHeight - .5; }, { passive: true });
+let introAt = performance.now() + 250;
+function intro(now) {
+  const t = (now - introAt) / 1000;
+  if (t < 0) return;
+  const fall = clamp(t / .7);
+  let y = 3.4 * (1 - fall * fall), sq = 0;
+  if (t > .7) { const k = t - .7; y = Math.max(0, .35 * Math.sin(Math.min(k / .42, 1) * Math.PI)) * Math.exp(-k * 2); sq = Math.exp(-k * 6) * Math.cos(k * 18) * .9; }
+  S.drop = y; S.introSquash = sq;
+}
+function renderScoop(now) {
+  if (!gl || !heroVis) return;
+  if (!reduced) intro(now);
+  const time = (now - S.t0) / 1000;
+  const m = easeIO(clamp((now - t0) / MORPH));
+  const A = FLAVOURS[from], B = FLAVOURS[to];
+  const bump = Math.sin(Math.PI * m);
+  S.melt = lerp(S.melt, bump, .14);
+  S.squash = lerp(S.squash, bump * .8 + S.introSquash, .25);
+  S.rot = (reduced ? 0 : time * .35) + S.mx * .8;
+  S.tilt = lerp(S.tilt, .12 + S.my * .22, .08);
+  const mixC = (a, b) => hex(a).map((v, k) => lerp(v, hex(b)[k], m));
+  gl.uniform2f(U.uRes, canvas.width, canvas.height);
+  gl.uniform1f(U.uTime, time); gl.uniform1f(U.uRot, S.rot + bump * 1.4); gl.uniform1f(U.uTilt, S.tilt);
+  gl.uniform1f(U.uMelt, S.melt); gl.uniform1f(U.uSquash, S.squash); gl.uniform1f(U.uDrop, S.drop);
+  gl.uniform1f(U.uSteps, mobile ? 70 : 104);
+  gl.uniform3fv(U.uBase, mixC(A.base, B.base)); gl.uniform3fv(U.uSpeck, mixC(A.speck, B.speck)); gl.uniform3fv(U.uSwirl, mixC(A.swirl, B.swirl));
+  gl.uniform1f(U.uSpeckAmt, lerp(A.speckAmt, B.speckAmt, m)); gl.uniform1f(U.uSwirlAmt, lerp(A.swirlAmt, B.swirlAmt, m));
+  gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ---------- marquee (speeds up with scroll) ---------- */
+const MQ = ['Made fresh every day', 'No animal fat', 'No artificial colouring', 'No preservatives', 'JAKIM Halal certified', 'Traditional Italian ice cream'];
+const mq = $('#marq');
+const seq = () => `<div class="seq">${MQ.map(t => `<span>${t}</span><svg><use href="#i-scoop"/></svg>`).join('')}</div>`;
+mq.innerHTML = seq() + seq() + seq();
+let mx = 0, lastY = scrollY, vel = 0;
+function marquee() {
+  const dy = scrollY - lastY; lastY = scrollY;
+  vel = lerp(vel, Math.abs(dy), .1);
+  if (reduced) return;
+  mx -= .6 + vel * .35;
+  const w = mq.firstElementChild.offsetWidth;
+  if (w && -mx > w) mx += w;
+  mq.style.transform = `translate3d(${mx}px,0,0)`;
+}
+
+/* ---------- strike-throughs + photo parallax ---------- */
+const lines = $$('.notin .ln'), parImg = $('#parImg');
+function strikes() {
+  lines.forEach(ln => {
+    const r = ln.getBoundingClientRect();
+    const k = reduced ? 1 : smooth(innerHeight * .78, innerHeight * .42, r.top + r.height / 2);
+    ln.style.setProperty('--k', k.toFixed(3));
+    ln.classList.toggle('struck', k > .95);
+  });
+  if (!reduced) { const pr = parImg.parentElement.getBoundingClientRect(); if (pr.bottom > 0 && pr.top < innerHeight) parImg.style.transform = `translate3d(0,${(pr.top / innerHeight - .5) * -40 - 24}px,0)`; }
+}
+
+/* ---------- reveal on view ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .2 });
+$$('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 3) * .12 + 's'; io.observe(el); });
+
+/* ---------- shop grid ---------- */
+let seed = 7;
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+function mound(c, s, id) {
+  seed = id * 97 + 13;
+  const pts = [], n = 4;
+  for (let k = 0; k <= n; k++) pts.push([k * (200 / n), 40 + Math.sin(k * 2.1 + id) * 10 + rnd() * 8 - (k > 0 && k < n ? 12 : -18)]);
+  let d = `M0 120 L0 ${pts[0][1] + 30} `;
+  for (let k = 0; k < pts.length - 1; k++) {
+    const [x1, y1] = pts[k], [x2, y2] = pts[k + 1], top = Math.min(y1, y2) - 22 - rnd() * 12;
+    d += `C ${x1 + 8} ${top} ${x2 - 8} ${top} ${x2} ${k === pts.length - 2 ? y2 + 12 : y2} `;
+  }
+  d += 'L200 120 Z';
+  let specks = '';
+  for (let k = 0; k < 26; k++) specks += `<ellipse cx="${(12 + rnd() * 176).toFixed(1)}" cy="${(62 + rnd() * 52).toFixed(1)}" rx="${(1 + rnd() * 2.2).toFixed(1)}" ry="${(1 + rnd() * 1.4).toFixed(1)}" fill="${s}" opacity="${(.45 + rnd() * .5).toFixed(2)}"/>`;
+  return `<svg class="mound" viewBox="0 0 200 120" aria-hidden="true"><defs><linearGradient id="mg${id}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient><clipPath id="mc${id}"><path d="${d}"/></clipPath></defs><path d="${d}" fill="${c}"/><g clip-path="url(#mc${id})">${specks}<path d="${d}" fill="url(#mg${id})"/></g></svg>`;
+}
+const SPOON = `<svg class="spoon" viewBox="0 0 40 120" aria-hidden="true"><path d="M20 4c9 0 14 10 14 22 0 9-6 14-14 14S6 35 6 26C6 14 11 4 20 4z" fill="#D9D5D0" stroke="#B4AEA7" stroke-width="2"/><rect x="17" y="38" width="6" height="78" rx="3" fill="#C9C4BE"/></svg>`;
+$('#grid').innerHTML = SHOP.map((it, i) => `
+  <article class="tub" data-name="${it.name}" data-tags="${it.tags.join(' ')}" ${it.sg ? `data-sg="${it.sg}"` : ''} data-color="${it.c}">
+    <div class="tray">${mound(it.c, it.s, i + 1)}${i % 3 === 0 ? SPOON : ''}</div>
+    <div class="tags">${it.badge ? `<span class="tag">${it.badge}</span>` : ''}${it.sg ? '' : '<span class="tag my">Malaysia only</span>'}</div>
+    <h3>${it.name}</h3><p class="it-note">${it.note}</p>
+    <div class="buy"><span><span class="price" ${it.sg ? `data-sg="${it.sg.toFixed(2)}"` : ''} data-my="${it.my.toFixed(2)}"><span></span></span><span class="sz">770 ml</span></span>
+    <button class="add" type="button"><svg><use href="#i-plus"/></svg></button></div>
+  </article>`).join('');
+$$('.tub').forEach(t => t.querySelector('.add').addEventListener('click', e => addToCart(e.currentTarget, t.dataset.name, t.dataset.color, priceText(t.querySelector('.price')))));
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.disconnect(); } }), { threshold: .3 }).observe($('#case'));
+$$('#filters button').forEach(b => b.addEventListener('click', () => {
+  $$('#filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const f = b.dataset.f, tubs = $$('.tub');
+  const first = new Map(tubs.map(t => [t, t.getBoundingClientRect()]));
+  tubs.forEach(t => t.classList.toggle('hide', f !== 'all' && !t.dataset.tags.split(' ').includes(f)));
+  if (reduced) return;
+  tubs.forEach(t => {
+    if (t.classList.contains('hide')) return;
+    const a = first.get(t), z = t.getBoundingClientRect();
+    if (a.width === 0) { t.animate([{ opacity: 0, transform: 'scale(.9)' }, { opacity: 1, transform: 'none' }], { duration: 500, easing: 'cubic-bezier(.22,1,.36,1)' }); return; }
+    t.animate([{ transform: `translate(${a.left - z.left}px,${a.top - z.top}px)` }, { transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.22,1,.36,1)' });
+  });
+}));
+
+/* ---------- story: expanding photo panels ---------- */
+const STEPS = [
+  { t: '06:00', l: 'Fresh in', h: 'The base is made', d: "Fresh milk, fruit and nuts come in, and the day's bases are mixed by hand in our kitchen.", img: 'kitchen-prep', alt: 'Gelato being prepared in the kitchen' },
+  { t: '07:30', l: 'Slow churn', h: 'Churned in small batches', d: "Low speed and less air. That's what makes gelato dense and silky, not fluffy like ice cream.", img: 'scooping', alt: 'Freshly churned gelato being scooped' },
+  { t: '09:00', l: 'Into the case', h: 'Fresh into the case', d: "Every tray in the case was made that morning. It's why we never need preservatives.", img: 'display-case', alt: 'Gelato trays in the display case' },
+  { t: '10:00', l: 'Doors open', h: 'Scoops, tubs and cakes out', d: "The counter opens, and the morning's tubs and cakes head out for delivery, packed cold.", img: 'gelato-cart', alt: 'The Gelatomio gelato cart with staff' }
+];
+const storyEl = $('#story'), pnRow = $('#pnRow'), SDUR = 5000;
+storyEl.style.setProperty('--sdur', SDUR + 'ms');
+pnRow.innerHTML = STEPS.map((s, i) => `<button class="pn${i ? '' : ' on'}" type="button" aria-expanded="${!i}" aria-label="${s.t} ${s.l}">
+  <img loading="lazy" src="assets/gelatomio/${s.img}-1000x600.jpg" alt="${s.alt}"><span class="pn-top"><span>${s.l}</span><span>0${i + 1}</span></span><span class="pn-prog"></span>
+  <span class="pn-vt" aria-hidden="true">${s.t}</span>
+  <span class="pn-txt"><b>${s.t}</b><span class="h">${s.h}</span><span class="d">${s.d}</span></span></button>`).join('');
+const pns = $$('.pn', pnRow);
+let sIdx = 0, sTimer = null, sVis = false, sPicked = false;
+function showStep(i) {
+  sIdx = i;
+  pns.forEach((pn, k) => { pn.classList.toggle('on', k === i); pn.classList.remove('run'); pn.setAttribute('aria-expanded', k === i); });
+  stepLoop();
+}
+function stepLoop() {
+  clearTimeout(sTimer);
+  if (reduced || sPicked || !sVis) return;
+  const pn = pns[sIdx]; void pn.offsetWidth; pn.classList.add('run');
+  sTimer = setTimeout(() => showStep((sIdx + 1) % pns.length), SDUR);
+}
+const pick = i => { sPicked = true; showStep(i); };
+pns.forEach((pn, i) => {
+  pn.addEventListener('click', () => pick(i));
+  pn.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse' && innerWidth > 820 && i !== sIdx) pick(i); });
+});
+new IntersectionObserver(es => es.forEach(e => {
+  sVis = e.isIntersecting;
+  if (sVis) stepLoop(); else { clearTimeout(sTimer); pns.forEach(x => x.classList.remove('run')); }
+}), { threshold: .35 }).observe(storyEl);
+
+/* ---------- cakes: stack + picker ---------- */
+function cakeSVG(k) {
+  return `<svg viewBox="0 0 300 240" aria-hidden="true">
+    <ellipse cx="150" cy="212" rx="126" ry="18" fill="#fff"/><ellipse cx="150" cy="208" rx="104" ry="12" fill="rgba(0,0,0,.06)"/>
+    <path d="M56 100v96a94 16 0 0 0 188 0v-96z" fill="${k.l1}"/>
+    <path d="M56 150a94 16 0 0 0 188 0v46a94 16 0 0 1-188 0z" fill="${k.l2}"/>
+    <path d="M56 148a94 16 0 0 0 188 0" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="3"/>
+    <ellipse cx="150" cy="100" rx="94" ry="18" fill="${k.top}"/>
+    <path d="M56 100c0 10 6 26 12 26s6-14 12-14 4 30 12 30 6-22 14-22 6 12 14 12 6-24 14-24 8 36 16 36 6-30 14-30 6 16 14 16 6-20 14-20 6 24 14 24 6-14 12-14 4 10 10 10 6-16 12-26" fill="${k.top}"/>
+    ${[[92, 84], [126, 78], [160, 80], [196, 86], [140, 96]].map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="9" fill="${k.deco}"/><circle cx="${p[0] - 3}" cy="${p[1] - 3}" r="3" fill="#fff" opacity=".6"/>`).join('')}
+    <path d="M150 40c10 0 16 8 16 18 0 8-7 12-16 12s-16-4-16-12c0-10 6-18 16-18z" fill="${k.l1}"/><circle cx="150" cy="44" r="6" fill="${k.deco}"/>
+  </svg>`;
+}
+const stack = $('#stack'), thumbs = $('#thumbs');
+stack.innerHTML = CAKES.map((k, i) => `<div class="ccard" data-i="${i}" data-pos="${i}"><div class="occ"><span>${k.occ}</span><span>0${i + 1} / 04</span></div>${cakeSVG(k)}<div class="nm">${k.name}</div></div>`).join('');
+thumbs.innerHTML = CAKES.map((k, i) => `<button class="thumb" type="button" data-i="${i}" aria-pressed="false"><div class="mini">${cakeSVG(k)}</div><b>${k.name}</b><span class="price" data-sg="${k.sg[0].toFixed(2)}" data-my="${k.my[0].toFixed(2)}"><span></span></span></button>`).join('');
+let front = 0, size = 0, cakeTimer, cakeVis = false, picked = false;
+function cakePrice() { const k = CAKES[front], cp = $('#cakePrice'); cp.dataset.sg = k.sg[size].toFixed(2); cp.dataset.my = k.my[size].toFixed(2); $('#cakeSize').textContent = size ? '8 inch' : '6 inch'; return cp; }
+function showCake(i, animate) {
+  const cards = $$('.ccard', stack);
+  const old = cards.find(c => c.dataset.pos === '0');
+  if (animate && old && !reduced && old.dataset.i !== String(i)) {
+    old.animate([{ transform: 'none', filter: 'blur(0)' }, { transform: 'translate(-6%,-16%) rotate(-9deg) scale(1.03)', filter: 'blur(3px)', offset: .5 }, { transform: 'translate(12%,-12%) scale(.85) rotate(7.5deg)', filter: 'blur(0)' }], { duration: 900, easing: 'cubic-bezier(.6,0,.2,1)' });
+  }
+  front = i;
+  cards.forEach(c => { c.dataset.pos = (Number(c.dataset.i) - i + CAKES.length) % CAKES.length; });
+  $('#cakeName').textContent = CAKES[i].name; $('#cakeOcc').textContent = CAKES[i].occ;
+  setPrice(cakePrice(), animate);
+  $$('.thumb', thumbs).forEach((t, n) => { t.classList.toggle('on', n === i); t.setAttribute('aria-pressed', n === i); });
+}
+function cakeLoop() { clearTimeout(cakeTimer); if (reduced || picked || !cakeVis) return; cakeTimer = setTimeout(() => { showCake((front + 1) % CAKES.length, true); cakeLoop(); }, 3800); }
+$$('.thumb', thumbs).forEach((t, i) => t.addEventListener('click', () => { picked = true; clearTimeout(cakeTimer); showCake(i, true); }));
+const nextCake = () => { picked = true; clearTimeout(cakeTimer); showCake((front + 1) % CAKES.length, true); };
+stack.addEventListener('click', nextCake);
+stack.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); nextCake(); } });
+new IntersectionObserver(es => es.forEach(e => { cakeVis = e.isIntersecting; if (cakeVis) cakeLoop(); else clearTimeout(cakeTimer); }), { threshold: .3 }).observe(stack);
+$$('#sizes button').forEach((b, i) => b.addEventListener('click', () => { size = i; $$('#sizes button').forEach(x => x.setAttribute('aria-pressed', x === b)); setPrice(cakePrice(), true); }));
+(() => {
+  const D = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], now = new Date();
+  $('#dates').innerHTML = Array.from({ length: 7 }, (_, k) => { const d = new Date(now); d.setDate(now.getDate() + k); return `<button type="button" ${k < 2 ? 'disabled' : ''} class="${k === 2 ? 'on' : ''}" aria-pressed="${k === 2}"><small>${D[d.getDay()]}</small>${d.getDate()}</button>`; }).join('');
+  $$('#dates button:not([disabled])').forEach(b => b.addEventListener('click', () => { $$('#dates button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); }); }));
+})();
+$('#cakeAdd').addEventListener('click', e => addToCart(e.currentTarget, CAKES[front].name + (size ? ' 8"' : ' 6"'), CAKES[front].top, priceText($('#cakePrice'))));
+
+/* ---------- two cities ---------- */
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); o.disconnect(); } }), { threshold: .25 }).observe($('#outlets'));
+$$('[data-shop]').forEach(b => b.addEventListener('click', () => { setCountry(b.dataset.shop, true); $('#shop').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); }));
+$$('.pc').forEach(pc => {
+  pc.addEventListener('click', e => { if (!e.target.closest('button') && pc.dataset.c !== country) setCountry(pc.dataset.c, true); });
+  if (reduced || mobile) return;
+  pc.addEventListener('pointermove', e => { const r = pc.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; pc.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`; });
+  pc.addEventListener('pointerleave', () => { pc.style.transform = ''; });
+});
+// Postcode check (illustrative Klang Valley ranges)
+const KV = [[40000, 48300], [50000, 60000], [62000, 63999], [68000, 68199]];
+$('#chk').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = $('#chkIn').value.replace(/\s/g, ''), res = $('#chkRes'), txt = res.querySelector('span'), ic = res.querySelector('i');
+  let ok = null, msg;
+  if (country === 'SG') {
+    if (!/^\d{6}$/.test(v)) msg = 'Please enter a 6-digit postal code.';
+    else { ok = true; msg = `Yes, we deliver island-wide, including ${v}.`; }
+  } else {
+    if (!/^\d{5}$/.test(v)) msg = 'Please enter a 5-digit postcode.';
+    else if (KV.some(([a, b]) => +v >= a && +v <= b)) { ok = true; msg = `Yes, we deliver to ${v}, packed cold.`; }
+    else { ok = false; msg = `Not yet for ${v}. You can pick up at Pavilion KL or Lot 10.`; }
+  }
+  res.className = 'res ' + (ok === true ? 'ok' : 'no');
+  ic.textContent = ok === true ? '✓' : '!'; txt.textContent = msg;
+});
+
+/* ---------- business: trade order builder ---------- */
+const B = { type: 'Cafe', formats: new Set(['5 L tubs']), n: 6, freq: 'Weekly' };
+const FL_COL = ['#B8CC86', '#F3B3BD', '#6B3F2A', '#FFC857', '#F6EBD2', '#C8A07A', '#B9814E', '#F1D77A', '#E2566F', '#9DB36A', '#8E5C42', '#FFE3A0'];
+$('#scoops').innerHTML = FL_COL.map(c => `<i style="--c:${c}"></i>`).join('');
+function summary() {
+  $$('#scoops i').forEach((d, i) => d.classList.toggle('on', i < B.n));
+  $('#nVal').textContent = B.n;
+  const f = [...B.formats];
+  const list = f.length ? f.join(', ').replace(/, ([^,]*)$/, ' and $1').toLowerCase().replace('5 l', '5 L') : 'gelato';
+  const freq = B.freq === 'One-off event' ? 'for a one-off event' : B.freq === 'Weekly' ? 'delivered weekly' : 'delivered every 2 weeks';
+  $('#summary').innerHTML = `A <b>${B.type.toLowerCase()}</b> menu with <b>${B.n} flavours</b> in <b>${list}</b>, <b>${freq}</b>.`;
+}
+$$('#builder .chips').forEach(g => {
+  const q = g.dataset.q, single = g.classList.contains('single');
+  $$('.chip', g).forEach(c => c.addEventListener('click', () => {
+    if (single) { $$('.chip', g).forEach(x => x.setAttribute('aria-pressed', x === c)); B[q] = c.textContent; }
+    else { const on = c.getAttribute('aria-pressed') !== 'true'; c.setAttribute('aria-pressed', on); on ? B.formats.add(c.textContent) : B.formats.delete(c.textContent); }
+    summary();
+  }));
+});
+$('#nFl').addEventListener('input', e => { B.n = +e.target.value; summary(); });
+$('#sendTrade').addEventListener('click', () => toast('Thanks! In the live site this goes straight to the trade team.', '#C3E24C'));
+summary();
+
+/* ---------- footer ---------- */
+(() => {
+  let h = '';
+  [[120, 3.2, 0], [210, 2.6, -1.1], [330, 3.6, -.4], [455, 2.9, -2], [560, 3.3, -.8], [690, 2.7, -1.6], [800, 3.5, -.2], [880, 3, -2.4]].forEach(([x, t, d], k) => {
+    h += `<path d="M${x - 14} 192 q14 34 28 0z"/><circle class="drop" cx="${x}" cy="214" r="${9 + (k % 3) * 3}" style="--t:${t}s;--d:${d}s"/>`;
+  });
+  $('#drips').innerHTML = h;
+})();
+$('#newsForm').addEventListener('submit', e => { e.preventDefault(); e.target.reset(); toast('Thanks! You are on the list.', '#C3E24C'); });
+
+/* ---------- loop + boot ---------- */
+function frame(now) {
+  requestAnimationFrame(frame);
+  onHdr();
+  $$('.grp.on .it', ingr).forEach(el => { el.style.translate = `${S.mx * -18 * el.dataset.depth}px ${S.my * -14 * el.dataset.depth}px`; });
+  renderScoop(now);
+  marquee(); strikes();
+}
+setCountry(country, false);
+setFlavour(0);
+showCake(0, false);
+sizeCanvas();
+restartAuto();
+requestAnimationFrame(frame);
+addEventListener('resize', () => { sizeCanvas(); setCountry(country, false); if (active > -1) fitWord(FLAVOURS[active].word); });
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => { setCountry(country, false); if (active > -1) fitWord(FLAVOURS[active].word); });
+})();
+</script>
+</body>
+</html>
